@@ -12,7 +12,7 @@ function ship() {
 		fill(255);
 		this.p1Ang = (this.ang + this.wingSpan)/180*Math.PI;
  		this.p2Ang = (this.ang - this.wingSpan)/180*Math.PI;
-  		triangle(this.x,this.y,this.x - this.length * Math.cos(this.p1Ang), this.y - this.length * Math.sin(this.p1Ang), this.x - this.length * Math.cos(this.p2Ang), this.y - this.length * Math.sin(this.p2Ang));
+  		triangle(this.x,this.y,this.x - this.length * Math.cos(this.p1Ang), this.y - this.length * Math.sin(this.p1Ang), this.x - this.length * Math.cos(this.p2Ang), (this.y) - this.length * Math.sin(this.p2Ang));
 	}
 
 	this.upKey = function() {
@@ -55,6 +55,12 @@ function ship() {
   			if(this.ang < 15) {
   				this.ang += 1
   			}
+  		}
+  		if(this.y - this.length * Math.sin((this.ang - this.wingSpan)/180*Math.PI) > height) {
+  			this.y = height + this.length * Math.sin((this.ang - this.wingSpan)/180*Math.PI)
+  		}
+  		if(this.y - this.length * Math.sin((this.ang + this.wingSpan)/180*Math.PI) < 0) {
+  			this.y = this.length * Math.sin((this.ang + this.wingSpan)/180*Math.PI)
   		}
   		this.goingUp = false
   		this.goingDown = false
